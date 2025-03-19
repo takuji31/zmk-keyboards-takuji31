@@ -1,0 +1,6 @@
+if SHIELD_NAZUNA4
+
+config ZMK_KEYBOARD_NAME
+    default "nazuna4"
+
+endif # SHIELD_NAZUNA4

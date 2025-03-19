@@ -1,0 +1,2 @@
+config SHIELD_NAZUNA4
+    def_bool $(shields_list_contains,nazuna4)
