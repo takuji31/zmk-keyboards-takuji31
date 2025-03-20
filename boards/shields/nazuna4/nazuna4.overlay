@@ -11,6 +11,14 @@
         zmk,physical-layout = &default_layout;
     };
 
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        a-gpios = <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&xiao_d 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+        status = "disabled";
+    };
+
     kscan: kscan {
         // If the hardware does not use a switch matrix, change this to the
         // appropriate driver and update the properties below to match.
@@ -25,14 +33,14 @@
         // Replace these comments with the GPIO pins in the matrix.
         // See https://zmk.dev/docs/development/hardware-integration/new-shield#shield-overlays
         col-gpios
-            = <&xiao_d 8 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 7
-             GPIO_ACTIVE_HIGH>
+            = <&xiao_d 10 GPIO_ACTIVE_HIGH>
+            , <&xiao_d 9  GPIO_ACTIVE_HIGH>////////////;.o;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
             ;
 
         row-gpios
-            = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&xiao_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
     };
 
@@ -41,11 +49,21 @@
         // for how to configure this
         compatible = "zmk,matrix-transform";
         columns = <2>;
-        rows = <2>;
+        rows = <3>;
 
         map = <
             RC(0, 0) RC(0, 1)
             RC(1, 0) RC(1, 1)
+            RC(2, 0) RC(2, 1)
         >;
     };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder>;
+        triggers-per-rotation = <20>;
+    };
+};
+&left_encoder {
+    status = "okay";
 };
