@@ -14,9 +14,16 @@
             bindings = <
                 &kp A &kp B
                 &kp C &kp D
-                &kp E &kp F
+                &kp E &studio_unlock
             >;
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+        };
+        extra1 {
+            status = "reserved";
+        };
+
+        extra2 {
+            status = "reserved";
         };
     };
 };
