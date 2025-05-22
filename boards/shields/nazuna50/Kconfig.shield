@@ -1,0 +1,5 @@
+config SHIELD_NAZUNA50_LEFT
+    def_bool $(shields_list_contains,nazuna50_left)
+
+config SHIELD_NAZUNA50_RIGHT
+    def_bool $(shields_list_contains,nazuna50_right)
